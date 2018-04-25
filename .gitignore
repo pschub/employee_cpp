@@ -32,3 +32,6 @@
 *.app
 
 *.swp
+obj/*
+employeeDemo
+test/runAllTests

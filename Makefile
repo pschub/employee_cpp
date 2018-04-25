@@ -40,7 +40,7 @@ all: $(TARGET) $(TEST_TARGET)
 -include $(DEPS)
 
 # Build executable
-$(TARGET): $(OBJ_FILES) 
+$(TARGET): main.cpp $(OBJ_FILES)
 	@echo "Building from objects... " $(OBJ_FILES)
 	$(CC) $(CFLAGS) main.cpp $(OBJ_FILES) -o $(TARGET)
 	@echo
@@ -65,12 +65,12 @@ $(TEST_OBJDIR)/%.o: $(TEST_DIR)/%.cpp $(DEPS)
 # Build test dependency files
 $(TEST_OBJDIR)/%.d: $(TEST_DIR)/%.cpp $(INC_FILES)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(TEST_FLAGS) -MM $< -MF $@
+	@$(CC) $(CFLAGS) $(TEST_FLAGS) -MM -MT $(patsubst %.d,%.o,$(@)) -MF $@ $<
 
 # Build regular dependency files
 $(OBJDIR)/%.d: $(SRCDIR)/%.cpp $(INC_FILES)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(TEST_FLAGS) -MM $< -MF $@
+	@$(CC) $(CFLAGS) $(TEST_FLAGS) -MM -MT $(patsubst %.d,%.o,$(@)) -MF $@ $<
 
 # Cleanup
 .PHONY : clean
