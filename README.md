@@ -3,8 +3,11 @@ Patrick Schubert, April 2018
 
 This project demonstrates an Employee class in C++. The following files are in this project:  
 
-* employee.hpp - the Employee class.
-* employee_demo.cpp - a demo of Employee, which creates a bunch of employees and prints their info.
+* inc/employee.hpp, src/employee.cpp - the Employee abstract class and subclasses.
+* main.cpp - a demo of Employee, which creates a bunch of employees and prints their info.  
+* test/RunAllTests.cpp - test runner  
+* test/employeeTest.cpp - contains all tests for Employee classes.  
+* Makefile - Builds Employee, demo, and runs tests.  
 * README.md - this file.
 
 
